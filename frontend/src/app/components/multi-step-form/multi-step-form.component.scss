@@ -1,0 +1,47 @@
+
+
+.step-section {
+  margin-top: 2rem;
+}
+
+.steps-custom ::ng-deep .p-steps {
+  margin-bottom: 2rem;
+}
+
+.p-inputtext-sm,
+.p-inputtextarea-sm {
+  width: 100%;
+}
+
+.p-field {
+  margin-bottom: 1.5rem;
+}
+
+.form-wrapper {
+  max-width: 600px;
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: #333;
+}
+
+button {
+  min-width: 100px;
+}
+
+.p-d-flex {
+  display: flex;  
+  gap: 0.75rem;       
+  margin-top: 1rem;
+  flex-wrap: wrap;   
+}
+  
+  

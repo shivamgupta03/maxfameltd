@@ -1,0 +1,90 @@
+<p-confirmDialog></p-confirmDialog>
+
+<div class="pt-2"></div>
+
+<div *ngIf="!hasFeedback()" class="empty-state">
+  <i class="pi pi-inbox" style="font-size: 2rem; color: #999;"></i>
+  <p>No feedbacks yet</p>
+</div>
+
+<p-table *ngIf="hasFeedback()" [value]="feedbackList" responsiveLayout="scroll" stripedRows>
+  <ng-template pTemplate="caption">
+    <div class="flex items-center justify-between">
+        <span class="text-xl font-bold">Feedbacks</span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Feedback</th>
+      <th>Rating</th>
+      <th>Created</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-entry>
+    <tr>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry.email }}</td>
+      <td>{{ entry.feedback }}</td>
+      <td>
+        <p-rating id="rating" [(ngModel)]="entry.rating" [readonly]="!isEditMode" [cancel]="false"></p-rating>
+      </td>
+      <td>{{ entry.createdAt | date: 'mediumDate' }}</td>
+      <td class="action-buttons">
+        <button pButton class="p-button-sm" (click)="viewFeedback(entry)"> 
+          View 
+        </button>
+        <button pButton class="p-button-sm" (click)="editFeedback(entry)" >
+          Edit
+        </button>
+        <button pButton class="p-button-sm" (click)="deleteFeedback(entry._id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!-- Dialog for View/Edit -->
+<p-dialog
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '400px' }"
+  (onHide)="closeDialog()"
+  [header]="isEditMode ? 'Edit Feedback' : 'View Feedback'"
+>
+  <div *ngIf="feedback" class="p-fluid">
+    <div class="p-field mb-3">
+      <label for="name">Name</label>
+      <input id="name" pInputText [(ngModel)]="feedback.name" [readonly]="!isEditMode" class="p-inputtext-sm" />
+    </div>
+
+    <div class="p-field mb-3">
+      <label for="email">Email</label>
+      <input id="email" type="email" pInputText [(ngModel)]="feedback.email" [readonly]="!isEditMode" class="p-inputtext-sm" />
+    </div>
+
+    <div class="p-field mb-3">
+      <label for="feedback">Feedback</label>
+      <textarea id="feedback" rows="3" pInputTextarea [(ngModel)]="feedback.feedback" [readonly]="!isEditMode" class="p-inputtextarea-sm"></textarea>
+    </div>
+
+    <div class="p-field mb-3">
+      <label for="rating">Rating</label>
+      <p-rating id="rating" [(ngModel)]="feedback.rating" [readonly]="!isEditMode" [cancel]="false"></p-rating>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <div class="p-d-flex p-jc-end" *ngIf="isEditMode">
+      <button pButton label="Save" icon="pi pi-check" (click)="saveChanges()" class="p-button-sm p-button-success"></button>
+      <button pButton label="Cancel" icon="pi pi-times" (click)="closeDialog()" class="p-button-sm p-button-secondary ml-2"></button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-toast position="bottom-right"></p-toast>

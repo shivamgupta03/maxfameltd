@@ -1,0 +1,54 @@
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  border: 1px dashed #ccc;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  color: #666;
+
+  i {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+  }
+}
+
+.action-buttons button {
+  margin-right: 0.25rem;
+}
+
+p-table {
+  margin: 1rem;
+}
+
+p-dialog .p-field {
+  margin-bottom: 1.5rem;
+}
+
+p-dialog .p-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.p-dialog input.p-inputtext-sm,
+.p-dialog textarea.p-inputtextarea-sm {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.p-dialog .p-rating {
+  margin-top: 0.3rem;
+}
+
+.p-dialog-footer {
+  margin-top: 1.5rem;
+  text-align: right;
+}

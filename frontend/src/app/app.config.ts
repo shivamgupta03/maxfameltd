@@ -1,20 +1,42 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideZoneChangeDetection } from '@angular/core';
 import { routes } from './app.routes';
-import { providePrimeNG } from 'primeng/config';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import Aura from '@primeng/themes/aura';
+
+// Angular Modules
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// PrimeNG Modules
+import { InputTextModule } from 'primeng/inputtext';
+import { RatingModule } from 'primeng/rating';
+import { ButtonModule } from 'primeng/button';
+import { StepsModule } from 'primeng/steps';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+// PrimeNG Services
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideAnimationsAsync(),
-    providePrimeNG({
-      theme: {
-        preset: Aura,
-        options: { darkModeSelector: '.p-dark' },
-      },
-    }),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-  ],
+    importProvidersFrom(
+      BrowserAnimationsModule,
+      FormsModule,
+      HttpClientModule,
+      RouterModule,
+      InputTextModule,
+      RatingModule,
+      ButtonModule,
+      StepsModule,
+      ToastModule,
+      ConfirmDialogModule 
+    ),
+    MessageService,
+    ConfirmationService
+  ]
 };
