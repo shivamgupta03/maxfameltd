@@ -57,10 +57,12 @@ curl --location --request PUT 'http://localhost:3000/api/feedback/6838a3be73bafd
 
 ## Recordings
 
-** API calls from postman
+**API calls from postman**
+
 ![postman-recording](https://github.com/user-attachments/assets/0fd9d58c-fb0d-4e18-b95a-544086dc46c5)
 
-** UI Demo
+**UI Demo**
+
 ![ui-recording](https://github.com/user-attachments/assets/d905f1c4-322c-454d-9c71-36e4e9764417)
 
 
